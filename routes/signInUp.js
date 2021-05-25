@@ -1,5 +1,5 @@
 const SignUpIn = require("../controllers/signInUp");
 
 module.exports = (router) => {
-    router.post("/login", SignUpIn.login);
+    router.post("/user/register", SignUpIn.register);
 }

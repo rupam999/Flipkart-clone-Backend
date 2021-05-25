@@ -42,6 +42,10 @@ app.options('*', cors())
 /****************DEFAULT API ENDPOINT****************/ 
 app.use('/api', router);
 
+/********DATABASE CONNECTION***********/
+const DB = require('./DB/config');
+DB.connectDB();
+
 /****************SERVER****************/ 
 if (process.env.NODE_ENV === 'development') {
   app.use(errorHandler());
