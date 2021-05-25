@@ -25,16 +25,18 @@ const register = async (req, res) => {
         if(err) {
             console.log(err);
             res.status(400);
-            res.send({
+            res.json({
                 message: 'User Exists'
             });
         } else {
-            res.send({
+            const token = utitilits.generateToken(response._id);
+            res.json({
                 message: 'success',
                 id: response._id,
                 name: response.name,
                 email: response.email,
-                userType: response.userType
+                userType: response.userType,
+                token
             });
         }
     });
@@ -55,27 +57,29 @@ const login = async (req, res) => {
                 try{
                     const passwordResult = await utitilits.decryptPassword(password, result.password);
                     if(passwordResult) {
-                        res.send({
+                        const token = utitilits.generateToken(result._id);
+                        res.json({
                             messge: 'sucess',
                             id: result._id,
                             name: result.name,
                             email: result.email,
-                            userType: result.userType
+                            userType: result.userType,
+                            token
                         });
                     } else {
-                        res.send({
+                        res.json({
                             message: 'Wrong Password'
                         });
                     }
                 } catch(err) {
                     // console.log(err);
                     res.status(400);
-                    res.send({
+                    res.json({
                         message: 'Internal Server Error'
                     });
                 }
             } else {
-                res.send({
+                res.json({
                     message: 'No User Found'
                 });
             }

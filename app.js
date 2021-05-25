@@ -2,12 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const path = require('path');
-const fs = require("fs")
-const moment = require("moment")
+const fs = require('fs')
+const moment = require('moment')
 const expressStatusMonitor = require('express-status-monitor');
 
 /****************DOTENV****************/ 
-const dotenv = require("dotenv")
+const dotenv = require('dotenv')
 dotenv.config({
   path: path.join(__dirname, '.env')
 });
@@ -39,6 +39,10 @@ app.use(cors({
 }))
 app.options('*', cors())
 
+/****************TOKEN****************/ 
+const { middleware } = require('./middleware/authMiddleware');
+app.use(middleware);
+
 /*********DEFAULT API ENDPOINT*********/ 
 app.use('/api', router);
 
@@ -54,7 +58,7 @@ if (process.env.NODE_ENV === 'development') {
     res.status(500).send({
       error: 1,
       err,
-      message: "Internal Server Error"
+      message: 'Internal Server Error'
     });
   });
 }
@@ -75,9 +79,11 @@ app.get('/', (req, res) => {
 /***************************************************************/
 /************************ALL Routes****************************/
 /*************************************************************/
-const SignUpIn = require("./routes/signInUp")
+const SignUpIn = require('./routes/signInUp');
+const SellerAddProduct = require('./routes/sellerAddProduct');
 
 SignUpIn(router);
+SellerAddProduct(router);
 
 
 
