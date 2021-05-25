@@ -70,7 +70,7 @@ const login = async (req, res) => {
                         if(passwordResult) {
                             const token = utilits.generateToken(result._id);
                             res.json({
-                                messge: 'sucess',
+                                messge: 'success',
                                 id: result._id,
                                 name: result.name,
                                 email: result.email,
