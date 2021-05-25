@@ -1,5 +1,5 @@
 const USER_MODEL = require('../models/userModel');
-const utitilits = require('../utils/utlities');
+const utilits = require('../utils/utlities');
 
 const register = async (req, res) => {
     const {name, email, password, userType='buyer'} = req.body;
@@ -11,7 +11,7 @@ const register = async (req, res) => {
         approved = false;
     }
 
-    const hashPassword = await utitilits.encryptPassword(password);
+    const hashPassword = await utilits.encryptPassword(password);
 
     const user = new USER_MODEL.User({
         name,
@@ -34,7 +34,7 @@ const register = async (req, res) => {
                     message: 'Account Not Approved'
                 });
             } else {
-                const token = utitilits.generateToken(response._id);
+                const token = utilits.generateToken(response._id);
                 res.json({
                     message: 'success',
                     id: response._id,
@@ -66,11 +66,11 @@ const login = async (req, res) => {
                     });
                 } else {
                     try{
-                        const passwordResult = await utitilits.decryptPassword(password, result.password);
+                        const passwordResult = await utilits.decryptPassword(password, result.password);
                         if(passwordResult) {
-                            const token = utitilits.generateToken(result._id);
+                            const token = utilits.generateToken(result._id);
                             res.json({
-                                messge: 'sucess',
+                                messge: 'success',
                                 id: result._id,
                                 name: result.name,
                                 email: result.email,
