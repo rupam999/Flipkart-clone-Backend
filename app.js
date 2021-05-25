@@ -39,7 +39,7 @@ app.use(cors({
 }))
 app.options('*', cors())
 
-/****************DEFAULT API ENDPOINT****************/ 
+/*********DEFAULT API ENDPOINT*********/ 
 app.use('/api', router);
 
 /********DATABASE CONNECTION***********/

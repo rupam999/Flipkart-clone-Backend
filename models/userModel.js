@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema({
     userType: {
         type: String,
         required: true
+    },
+    approved: {
+        type: Boolean,
+        required: true
     }
 }, {
     timestamps: true
