@@ -75,10 +75,8 @@ app.get('/', (req, res) => {
 /***************************************************************/
 /************************ALL Routes****************************/
 /*************************************************************/
-const dummyRoutes = require("./routes/dummy")
 const SignUpIn = require("./routes/signInUp")
 
-dummyRoutes(router);
 SignUpIn(router);
 
 
