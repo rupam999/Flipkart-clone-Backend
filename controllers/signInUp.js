@@ -11,7 +11,7 @@ const register = async (req, res) => {
         approved = false;
     }
 
-    const hashPassword = await utitilits.encryptPassword('abc');
+    const hashPassword = await utitilits.encryptPassword(password);
 
     const user = new USER_MODEL.User({
         name,
@@ -29,15 +29,21 @@ const register = async (req, res) => {
                 message: 'User Exists'
             });
         } else {
-            const token = utitilits.generateToken(response._id);
-            res.json({
-                message: 'success',
-                id: response._id,
-                name: response.name,
-                email: response.email,
-                userType: response.userType,
-                token
-            });
+            if(!response.approved) {
+                res.json({
+                    message: 'Account Not Approved'
+                });
+            } else {
+                const token = utitilits.generateToken(response._id);
+                res.json({
+                    message: 'success',
+                    id: response._id,
+                    name: response.name,
+                    email: response.email,
+                    userType: response.userType,
+                    token
+                });
+            }
         }
     });
 }
@@ -54,29 +60,35 @@ const login = async (req, res) => {
             });
         } else {
             if(result) {
-                try{
-                    const passwordResult = await utitilits.decryptPassword(password, result.password);
-                    if(passwordResult) {
-                        const token = utitilits.generateToken(result._id);
+                if(!result.approved) {
+                    res.json({
+                        message: 'Account Not Approved'
+                    });
+                } else {
+                    try{
+                        const passwordResult = await utitilits.decryptPassword(password, result.password);
+                        if(passwordResult) {
+                            const token = utitilits.generateToken(result._id);
+                            res.json({
+                                messge: 'sucess',
+                                id: result._id,
+                                name: result.name,
+                                email: result.email,
+                                userType: result.userType,
+                                token
+                            });
+                        } else {
+                            res.json({
+                                message: 'Wrong Password'
+                            });
+                        }
+                    } catch(err) {
+                        // console.log(err);
+                        res.status(400);
                         res.json({
-                            messge: 'sucess',
-                            id: result._id,
-                            name: result.name,
-                            email: result.email,
-                            userType: result.userType,
-                            token
-                        });
-                    } else {
-                        res.json({
-                            message: 'Wrong Password'
+                            message: 'Internal Server Error'
                         });
                     }
-                } catch(err) {
-                    // console.log(err);
-                    res.status(400);
-                    res.json({
-                        message: 'Internal Server Error'
-                    });
                 }
             } else {
                 res.json({
