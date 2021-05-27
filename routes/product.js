@@ -16,4 +16,5 @@ const upload = multer({ storage: storage })
 
 module.exports = (router) => {
     router.post('/product/add/image', upload.single('productImage'), Product.uploadProductImage);
+    router.post('/product/add/details', Product.addProductDetails);
 }
