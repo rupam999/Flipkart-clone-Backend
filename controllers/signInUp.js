@@ -24,7 +24,6 @@ const register = async (req, res) => {
     await user.save((err, response) => {
         if(err) {
             console.log(err);
-            res.status(400);
             res.json({
                 message: 'User Exists'
             });
