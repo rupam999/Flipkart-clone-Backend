@@ -7,4 +7,4 @@
 
 ## PRODUCT
 
--   Upload Product Details @ **/api/product/add/details** takes (name, brand, description, mrp (Number), price (Number), origin, manufacturer, url) returns a message
+-   Upload Product Details @ **/api/product/add/details** takes (name, brand, category, description, mrp (Number), price (Number), origin, manufacturer, url) returns a message

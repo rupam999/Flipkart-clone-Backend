@@ -9,6 +9,10 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -32,6 +36,18 @@ const productSchema = mongoose.Schema({
     url: {
         type: String,
         required: true
+    },
+    size: {
+        type: String
+    },
+    expiry: {
+        tyepe: String
+    },
+    weight: {
+        type: String
+    },
+    vegetarian: {
+        type: Boolean
     }
 }, {
     timestamps: true
