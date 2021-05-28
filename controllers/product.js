@@ -1,13 +1,5 @@
 const PRODUCT_MODEL = require('../models/productModel');
 
-const uploadProductImage = (req, res) => {
-    const fileName = req.file.filename;
-    console.log(fileName);
-    res.json({
-        fileName
-    });
-}
-
 const addProductDetails = async (req, res) => {
     const {name, brand, description, mrp, price, origin, manufacturer, url} = req.body;
 
@@ -38,6 +30,5 @@ const addProductDetails = async (req, res) => {
 }
 
 module.exports = {
-    uploadProductImage,
     addProductDetails
 }

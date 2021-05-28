@@ -7,4 +7,4 @@
 
 ## PRODUCT
 
--   Upload Product Image @ **/api/product/add/image** takes (file) returns file URL
+-   Upload Product Details @ **/api/product/add/details** takes (name, brand, description, mrp (Number), price (Number), origin, manufacturer, url) returns a message
