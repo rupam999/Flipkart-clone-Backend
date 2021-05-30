@@ -31,6 +31,9 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    size: {
+        type: String,
+    },
     category: {
         type: String,
         required: true
@@ -40,6 +43,10 @@ const productSchema = mongoose.Schema({
         required: true
     },
     description: {
+        type: String,
+        required: true
+    },
+    highlights: {
         type: String,
         required: true
     },
@@ -67,11 +74,18 @@ const productSchema = mongoose.Schema({
         required: true,
         default: 0
     },
+    warranty: {
+        type: String,
+    }, 
     origin: {
         type: String,
         required: true
     }, 
     manufacturer: {
+        type: String,
+        required: true
+    },
+    specifications: {
         type: String,
         required: true
     },
