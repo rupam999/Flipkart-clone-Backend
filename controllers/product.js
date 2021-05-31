@@ -77,7 +77,33 @@ const getAllProducts = async (req, res) => {
     }
 }
 
+const getParticularProduct = async (req, res) => {
+    try{
+        const {id} = req.query;
+        const product = await PRODUCT_MODEL.Product.findById(id);
+
+        if(product) {
+            res.json({
+                message: 'success',
+                product
+            });
+        } else {
+            res.json({
+                message: 'No Details Found'
+            });
+        }
+
+    } catch(error) {
+        console.log(error)
+        res.status(400);
+        res.json({
+            message: 'error'
+        });
+    }
+}
+
 module.exports = {
     addProductDetails,
-    getAllProducts
+    getAllProducts,
+    getParticularProduct
 }
