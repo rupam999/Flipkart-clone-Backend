@@ -79,9 +79,11 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 /*************************************************************/
 const SignUpIn = require('./routes/signInUp');
 const AllProduct = require('./routes/product');
+const Payment = require('./routes/payment');
 
 SignUpIn(router);
 AllProduct(router);
+Payment(router);
 
 
 

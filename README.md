@@ -10,3 +10,5 @@
 -   Upload Product Details @ **/api/product/add/details** takes (name, brand, category, description, mrp (Number), price (Number), origin, manufacturer, url) returns a message
 
 -   /product/find (optional (search, page))
+-   /product/topProduct
+-   /product/everydaySale (limit deafult 5)

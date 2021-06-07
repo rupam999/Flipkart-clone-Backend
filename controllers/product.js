@@ -102,8 +102,39 @@ const getParticularProduct = async (req, res) => {
     }
 }
 
+const getTopProducts = async (req, res) => {
+    try {
+        const {limit} = req.query;
+    } catch(error) {
+        console.log(error)
+        res.status(400);
+        res.json({
+            message: 'error'
+        });
+    }
+}
+
+const getEveryDaySaleItem = async (req, res) => {
+    try {
+        const {limit=5} = req.query;
+        const product = await PRODUCT_MODEL.Product.find().limit(limit);
+        res.json({
+            message: 'success',
+            product
+        });
+    } catch(error) {
+        console.log(error)
+        res.status(400);
+        res.json({
+            message: 'error'
+        });
+    }
+}
+
 module.exports = {
     addProductDetails,
     getAllProducts,
-    getParticularProduct
+    getParticularProduct,
+    getTopProducts,
+    getEveryDaySaleItem
 }
